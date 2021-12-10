@@ -8,7 +8,7 @@ class Node {
         int id;
         List * followingFriends;
         List * followingAdversaries;
-        
+
     public:
         Node(int id, List * followingFriends, List * followingAdversaries);
         ~Node();
@@ -24,7 +24,7 @@ class Node {
         bool hasFriends() ;
         bool hasAdversaries();
         void printNode();
-
+        bool toCompare(Node other);
 };
 
 #endif

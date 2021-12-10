@@ -48,3 +48,7 @@ bool Node::hasAdversaries() {
 void Node::printNode() {
     cout << this->getID();
 }
+
+bool Node::toCompare(Node other) {
+    return (this->getID() == other->getID());
+}
