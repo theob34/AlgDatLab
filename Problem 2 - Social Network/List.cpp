@@ -54,6 +54,18 @@ List::~List () {
     //Empty for now
 }
 
+// Getter
+
+Element * List::getFirstElement () {
+    return this->firstElement;
+}
+
+Element * List::getLastElement () {
+    return this->lastElement;
+}
+
+// Other functions
+
 void List::insertLast (Element * element) {
     if (this->sizeList() == 0) {
         this->firstElement = element;

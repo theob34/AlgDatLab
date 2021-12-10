@@ -33,6 +33,12 @@ class List {
     public:
         List ();
         ~List ();
+
+        // Getter
+        Element * getFirstElement ();
+        Element * getLastElement ();
+
+        // Other functions
         void insertLast (Element * element);
         void removeLast ();
         void printList ();
