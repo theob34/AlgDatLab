@@ -50,5 +50,5 @@ void Node::printNode() {
 }
 
 bool Node::toCompare(Node other) {
-    return (this->getID() == other->getID());
+    return (this->getID() == other.getID());
 }
