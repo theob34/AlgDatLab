@@ -3,12 +3,10 @@
 
 using namespace std;
 
-Node::Node(int id, Node * followingFriends, int numberFollowingFriends, Node * followingAdversaries, int numberFollowingAdversaries) {
+Node::Node(int id, List * followingFriends, List * followingAdversaries) {
     this->id = id;
-    this->followingFriends = followingFriends;  // Amélioration : utiliser une liste chaînée plutôt qu'un tableau avec un nombre d'éléments connus
-    this->numberFollowingFriends = numberFollowingFriends;
-    this->followingAdversaries = followingAdversaries; // Amélioration : utiliser une liste chaînée plutôt qu'un tableau avec un nombre d'éléments connus
-    this->numberFollowingAdversaries = numberFollowingAdversaries;
+    this->followingFriends = followingFriends;  
+    this->followingAdversaries = followingAdversaries; 
 }
 
 Node::~Node() {
@@ -21,30 +19,30 @@ int Node::getID() {
     return this->id;
 }
 
-Node * Node::getFollowingFriends() {
+List * Node::getFollowingFriends() {
     return this->followingFriends;
 }
 
 int Node::getNumberFollowingFriends() {
-    return this->numberFollowingFriends;
+    return (*this->followingFriends).sizeList();
 }
 
-Node * Node::getFollowingAdversaries() {
+List * Node::getFollowingAdversaries() {
     return this->followingAdversaries;
 }
 
 int Node::getNumberFollowingAdversaries() {
-    return this->numberFollowingAdversaries;
+    return (*this->followingAdversaries).sizeList();
 }
 
 // Other functions
 
 bool Node::hasFriends() {
-    return (this->numberFollowingFriends == 0);
+    return (this->getFollowingFriends() == 0);
 }
 
 bool Node::hasAdversaries() {
-    return (this->numberFollowingAdversaries == 0);
+    return (this->getFollowingAdversaries() == 0);
 }
 
 void Node::printNode() {

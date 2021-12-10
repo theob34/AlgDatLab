@@ -91,7 +91,6 @@ void List::printList () {
         cout << " -> ";
     }
     cout << " NULL";
-
 }
 
 int List::sizeList () {

@@ -1,24 +1,23 @@
 #ifndef DEF_NODE
 #define DEF_NODE
+#include "List.h"
 
 
 class Node {
     private:
         int id;
-        Node * followingFriends; // Amélioration : utiliser une liste chaînée plutôt qu'un tableau avec un nombre d'éléments connus
-        int numberFollowingFriends;
-        Node * followingAdversaries; // Amélioration : utiliser une liste chaînée plutôt qu'un tableau avec un nombre d'éléments connus
-        int numberFollowingAdversaries;
-
+        List * followingFriends;
+        List * followingAdversaries;
+        
     public:
-        Node(int id, Node * followingFriends, int numberFollowingFriends, Node * followingAdversaries, int numberFollowingAdversaries);
+        Node(int id, List * followingFriends, List * followingAdversaries);
         ~Node();
         
         // Getter
         int getID();
-        Node * getFollowingFriends();
+        List * getFollowingFriends();
         int getNumberFollowingFriends();
-        Node * getFollowingAdversaries();
+        List * getFollowingAdversaries();
         int getNumberFollowingAdversaries();
 
         // Other functions
