@@ -20,6 +20,7 @@ class Element {
 
         // Setter
         void setNextElement(Element * nextData);
+        void setPreviousElement(Element * previousElement)
 
 };
 

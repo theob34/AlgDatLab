@@ -41,6 +41,10 @@ void Element::setNextElement(Element * nextElement) {
     this->nextElement = nextElement;  
 }
 
+void Element::setPreviousElement(Element * previousElement) {
+    this->previousElement = previousElement;
+}
+
 
 // -- List -- //
 
@@ -73,6 +77,7 @@ void List::insertLast (Element * element) {
     }
     else {
         this->lastElement->setNextElement(element);
+        element->setPreviousElement(this->lastElement);
         this->lastElement = element;
     }
     this->numberElement++;
