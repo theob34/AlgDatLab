@@ -1,7 +1,7 @@
 #ifndef DEF_NODELIST
 #define DEF_NODELIST
 
-#include "node.h"
+#include "Node.h"
 
 class Element {
     private:
@@ -20,7 +20,7 @@ class Element {
 
         // Setter
         void setNextElement(Element * nextData);
-        void setPreviousElement(Element * previousElement)
+        void setPreviousElement(Element * previousElement);
 
 };
 

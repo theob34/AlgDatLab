@@ -2,14 +2,12 @@
 - STL Queue
 - Node :    -> int id;
             -> Node * followingFriends;
-            -> int numberFollowingFriends;
             -> Node * followingAdversaries;
-            -> int numberFollowingAdversaries;
 
 # Pseudo-code algorithm :
 //The main node is the people for who we want to know who are his/her friends
 
-//I create an array to put all the friends of the main node
+//I create an list to put all the friends of the main node
 friendsOfMainNode
 
 //We add the main Node to the queue

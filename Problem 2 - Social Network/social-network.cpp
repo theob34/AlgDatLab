@@ -1,8 +1,8 @@
 #include <iostream>
 #include <queue>
 #include <string>
-#include "node.h"
-#include "nodeList.h"
+#include "Node.h"
+#include "List.h"
 
 using namespace std;
 
@@ -11,16 +11,22 @@ Node __initAdversaryGraph() {
     //Create all the graph and return the first node
 }
 
-bool isInNodeList (Node node, NodeList * nodesList) {
-    //Amélioration : implémenter une liste chaînée pour les amis
-    //Utiliser alors cette fonction
-    return true;
+bool isInNodeList (Node node, List * nodesList) {
+    Element * currentNode = nodesList->getFirstElement();
+    bool found = false;
+    for (int i = 0; i < nodesList->sizeList(); i++) {
+        if (node.toCompare(*(currentNode->getData()))) {
+            found = true;
+        }
+        currentNode = currentNode->getNextElement();
+    }
+    return found;
 }
 
 void searchFriends(Node mainNode){
 
     //I create a list to put all the friends of the main node
-    NodeList * friendsOfMainNode ;
+    List * friendsOfMainNode = new List() ;
 
     //We add the main Node to the queue
     queue <Node> nodesToStudy ;
@@ -34,32 +40,51 @@ void searchFriends(Node mainNode){
         nodesToStudy.pop() ;
 
         //We study if is a friend or an adversary of main Node
-        bool isFriend;
-        if (isInNodeList(currentNode, friendsOfMainNode)) {
-            isFriend = true;
-        }
-        else {
-            isFriend = false;
-        }
+        bool isFriend = isInNodeList(currentNode, friendsOfMainNode);
 
         if (isFriend) {
             //We add all the following friends to the list and to the queue
+            List * followingFriends = currentNode.getFollowingFriends();
+            Element currentElement = *(followingFriends->getFirstElement()); //We create a copy of the first element of the list
             for (int i = 0; i < (currentNode.getNumberFollowingFriends()); i++) {
                 // add Node in friendsOfMainNode
+                friendsOfMainNode->insertLast(&currentElement);
                 // add Node in Queue
+                nodesToStudy.push(*(currentElement.getData()));
+                // take the next Node
+                currentElement = *(currentElement.getNextElement());
             }
             //We add all adversaries only to the queue
-            // for all Node in followingAdversaries array
+            List * followingAdversaries = currentNode.getFollowingAdversaries();
+            currentElement = *(followingAdversaries->getFirstElement()); //We create a copy of the first element of the list
+            for (int i = 0; i < (currentNode.getNumberFollowingAdversaries()); i++) {
                 // add Node in Queue
+                nodesToStudy.push(*(currentElement.getData()));
+                // take the next Node
+                currentElement = *(currentElement.getNextElement());
+            }
         } 
         else {
             //We add all the following adversaries to the list and to the queue
-            // for all Node in followingAdversaries array
+            List * followingAdversaries = currentNode.getFollowingAdversaries();
+            Element currentElement = *(followingAdversaries->getFirstElement()); //We create a copy of the first element of the list
+            for (int i = 0; i < (currentNode.getNumberFollowingAdversaries()); i++) {
                 // add Node in friendsOfMainNode
+                friendsOfMainNode->insertLast(&currentElement);
                 // add Node in Queue
+                nodesToStudy.push(*(currentElement.getData()));
+                // take the next Node
+                currentElement = *(currentElement.getNextElement());
+            }
             //We add all friends only to the queue
-            // for all Node in followingFriends array
-                // add Node 
+            List * followingFriends = currentNode.getFollowingFriends();
+            currentElement = *(followingFriends->getFirstElement()); //We create a copy of the first element of the list
+            for (int i = 0; i < (currentNode.getNumberFollowingAdversaries()); i++) {
+                // add Node in Queue
+                nodesToStudy.push(*(currentElement.getData()));
+                // take the next Node
+                currentElement = *(currentElement.getNextElement());
+            }
         }
 
     }
@@ -70,7 +95,7 @@ void searchFriends(Node mainNode){
 
 int main() {
     
-    Node mainNode(8, NULL, 0, NULL, 0);
+    Node mainNode(8, NULL, NULL);
     cout << "ID : " << mainNode.getID();
     return 1;
 }
